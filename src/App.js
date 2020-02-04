@@ -10,13 +10,37 @@ import products from './products';
 class App extends Component {
 
   state = {
-    dropdownlistCategory: null
+    dropdownlistCategory: null,
+    gridDataState: {
+      sort: [
+        {field: 'ProductName', dir:'asc'}
+      ],
+      page: {skip:0, take:10}
+    }
   }
 
-  handleDropDownChange = (e) => {
+   handleDropDownChange = (e) => {
+    let newDataState = { ...this.state.gridDataState }
+    if (e.target.value.CategoryID !== null) {
+      newDataState.filter = {
+        logic: 'and',
+        filters: [{ field: 'CategoryID', operator: 'eq', value: e.target.value.CategoryID }]
+      }
+      newDataState.skip = 0
+    } else {
+      newDataState.filter = []
+      newDataState.skip = 0
+    }
     this.setState({
-      dropdownlistCategory: e.target.value.CategoryID
+      dropdownlistCategory: e.target.value.CategoryID,
+      gridDataState: newDataState
     });
+  }
+
+  handleGridDataStateChange = (e) => {
+    this.setState({
+     gridDataState: e.data
+    })
   }
 
   render() {
@@ -33,8 +57,21 @@ class App extends Component {
             defaultItem={{CategoryID:null, CategoryName: 'Product categories'}}
             onChange={this.handleDropDownChange}
          />
-         &nbsp; Select category ID: <strong> {this.state.drowdownlistCategory}</strong>
+         &nbsp; Select category ID: <strong> {this.state.dropdownlistCategory}</strong>
          </p>
+
+         <Grid
+          data={process(products, this.state.gridDataState)}
+          pageable={true}
+          sortable={true}
+          {...this.state.gridDataState}
+          onDataStateChange={this.handleGridDataStateChange}
+          >
+          <GridColumn field="ProductName" />
+          <GridColumn field="UnitPrice" />
+          <GridColumn field="UnitsInStock" />
+          <GridColumn field="Discontinued" />
+        </Grid>
       </div>
     );
   }

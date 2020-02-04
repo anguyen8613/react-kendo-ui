@@ -33,8 +33,16 @@ class App extends Component {
             defaultItem={{CategoryID:null, CategoryName: 'Product categories'}}
             onChange={this.handleDropDownChange}
          />
-         &nbsp; Select category ID: <strong> {this.state.drowdownlistCategory}</strong>
+         &nbsp; Select category ID: <strong> {this.state.dropdownlistCategory}</strong>
          </p>
+
+         <Grid
+          data={products}>
+          <GridColumn field="ProductName" />
+          <GridColumn field="UnitPrice" />
+          <GridColumn field="UnitsInStock" />
+          <GridColumn field="Discontinued" />
+        </Grid>
       </div>
     );
   }

@@ -5,6 +5,7 @@ Product Categories
 ![alt text](./product-categories-ui.png)
 
 
+
 Filtered Category
 ![alt text](./filtered-category-ui.png)
 

@@ -2,7 +2,7 @@ React Kendo UI
 
 
 Product Categories
-![alt text](./product-categories-ui.png)
+![alt text](./categories-ui.png)
 
 
 

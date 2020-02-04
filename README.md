@@ -1,7 +1,12 @@
 React Kendo UI
 
-![alt text](./ui.png)
 
+Product Categories
+![alt text](./product-categories-ui.png)
+
+
+Filtered Category
+![alt text](./filtered-category-ui.png)
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
